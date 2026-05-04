@@ -1,0 +1,56 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: #1e293b;
+  color: white;
+  position: fixed;
+  padding: 10px;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu li:hover {
+  background: #334155;
+  border-radius: 5px;
+}
+
+/* Submenu */
+.submenu {
+  list-style: none;
+  padding-left: 15px;
+}
+
+.submenu li {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.logout {
+  position: absolute;
+  bottom: 10px;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background: #7f1d1d;
+  color: white;
+  border-radius: 5px;
+}

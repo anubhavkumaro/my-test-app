@@ -1,0 +1,65 @@
+/* Full screen center */
+.unauth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f9;
+}
+
+/* Card */
+.unauth-card {
+  background: white;
+  padding: 40px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 400px;
+}
+
+/* 403 code */
+.code {
+  font-size: 72px;
+  color: #e53935;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.unauth-card h2 {
+  margin-bottom: 10px;
+}
+
+.unauth-card p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  background: #ddd;
+  transition: 0.3s;
+}
+
+.actions button:hover {
+  background: #ccc;
+}
+
+.actions .primary {
+  background: #1976d2;
+  color: white;
+}
+
+.actions .primary:hover {
+  background: #1565c0;
+}

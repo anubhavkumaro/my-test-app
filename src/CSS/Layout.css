@@ -1,0 +1,64 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full layout */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+/* Sidebar space already fixed */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+/* Main content */
+.content {
+  margin-left: 240px;   /* same as sidebar width */
+  padding: 20px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Page heading */
+.content h1 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+/* Cards (for dashboard / pages) */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    left: -240px;   /* hidden */
+    transition: 0.3s;
+  }
+
+  .sidebar.active {
+    left: 0;        /* show sidebar */
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
