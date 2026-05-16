@@ -72,7 +72,7 @@ body {
   cursor: pointer;
 }
 
-.register-btn {
+.register-btn1 {
   width: 100%;
   padding: 12px;
   background: #667eea;
@@ -83,7 +83,7 @@ body {
   font-weight: bold;
 }
 
-.register-btn:hover {
+.register-btn1:hover {
   background: #5a67d8;
 }
 

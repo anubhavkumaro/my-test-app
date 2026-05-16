@@ -196,7 +196,7 @@ export default function Register() {
           )}
         </div>
 
-        <button type="submit" disabled={loading} className="register-btn">
+        <button type="submit" disabled={loading} className="register-btn1">
             {loading ? "Registering..." : "Register"}
           </button>
 

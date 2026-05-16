@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/Navbar.css";
 
-export default function Navbar() {
+export default function Navbar({ cartCount }) {
   const [userOpen, setUserOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
 
@@ -11,12 +11,14 @@ export default function Navbar() {
   // 🔥 Logout function
   const handleLogout = () => {
     localStorage.removeItem("token");   // remove auth token
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
     navigate("/");                      // redirect to login
   };
 
   return (
     <div className="sidebar">
-      <h2 className="logo">Admin</h2>
+      <h2 className="logo1">Admin</h2>
 
       <ul className="menu">
 

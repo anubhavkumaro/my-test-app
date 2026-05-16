@@ -1,0 +1,369 @@
+/* =========================
+   PRODUCTS GRID
+========================= */
+
+.products-grid {
+  display: grid;
+  margin: 20px;
+
+  /* Amazon Style Small Cards */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.product-card {
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   PRODUCT IMAGE
+========================= */
+
+.product-image {
+  width: 100%;
+
+  height: 200px;
+
+  object-fit: contain;
+
+  padding: 12px;
+
+  background: #fff;
+
+  transition: 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.02);
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-info {
+  padding: 14px;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category {
+
+  display: inline-block;
+
+  background: #e8f7ff;
+
+  color: #007185;
+
+  padding: 4px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+/* =========================
+   PRODUCT TITLE
+========================= */
+
+.product-info h3 {
+
+  margin: 12px 0 10px;
+
+  font-size: 16px;
+
+  color: #0f1111;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+
+  overflow: hidden;
+}
+
+/* =========================
+   PRICE & RATING
+========================= */
+
+.price-rating {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.price {
+
+  color: #b12704;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+.rating {
+
+  color: #ff9900;
+
+  font-weight: 600;
+
+  font-size: 13px;
+}
+
+/* =========================
+   STOCK
+========================= */
+
+.stock {
+
+  margin: 12px 0;
+
+  color: #007600;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.product-buttons {
+
+  display: flex;
+
+
+  gap: 10px;
+
+  margin-top: 14px;
+}
+
+.add-cart-btn,
+.buy-now-btn {
+
+  width: 100%;
+
+  border: none;
+
+  padding: 10px;
+
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+/* Add To Cart */
+
+.add-cart-btn {
+
+  background: #ffd814;
+
+  color: #111;
+}
+
+.add-cart-btn:hover {
+
+  background: #f7ca00;
+}
+
+/* Buy Now */
+
+.buy-now-btn {
+
+  background: #ffa41c;
+
+  color: #111;
+}
+
+.buy-now-btn:hover {
+
+  background: #fa8900;
+}
+
+/* Disabled */
+
+.add-cart-btn:disabled,
+.buy-now-btn:disabled {
+
+  background: gray;
+
+  color: white;
+
+  cursor: not-allowed;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .products-grid {
+    
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+  }
+
+  .product-image {
+
+    height: 160px;
+  }
+
+  .product-info h3 {
+
+    font-size: 14px;
+  }
+
+  .price {
+
+    font-size: 16px;
+  }
+
+}
+
+.loading-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top: 6px solid blue;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.description {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+/* More / Less Button */
+.more-btn {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+.more-btn:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.cart-message {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  background: #2aa847d8;
+  color: #fff;
+
+  padding: 14px 18px;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  animation: slideIn 0.4s ease,
+             fadeOut 0.4s ease 2.6s forwards;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: -20px;
+  left: 0px;
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* Slide In */
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}

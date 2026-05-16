@@ -1,34 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "../CSS/Home.css";
 import { Link } from "react-router-dom";
+import PublicNavbar from "../components/PublicNavbar";
 
-export default function Home() {
+export default function Home({ cartCount }) {
+
+
   return (
     <div>
-      {/* Navbar */}
-      <header className="navbar">
-        <div className="logo">ShopEase</div>
-
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/Products">Products</Link>
-          <Link to="/Deals">Deals</Link>
-          <Link to="/Contact">Contact</Link>
-        </nav>
-
-        <div className="auth-buttons">
-          <button className="login-btn"><Link to="/Login">Login</Link></button>
-          <button className="register-btn"><Link to="/Register">Register</Link></button>
-          
-        </div>
-      </header>
+      <PublicNavbar cartCount={cartCount}/>
 
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-text">
           <h1>Shop Smarter, Live Better</h1>
           <p>Discover amazing products at unbeatable prices</p>
-          <button className="primary-btn">Start Shopping</button>
+
+          {/* Add to Cart Button */}
+          <button className="primary-btn">
+            Add To Cart
+          </button>
         </div>
 
         <img

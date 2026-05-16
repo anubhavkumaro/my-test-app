@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api";
+import api, { BASE_URL } from "../../api";
 import "../../CSS/ViewAllProducts.css";
 
 export default function ViewAllProducts() {
@@ -181,7 +181,7 @@ export default function ViewAllProducts() {
                 <p>
                   <b>Image:</b>
                   <img
-                    src={`http://localhost:8080/uploads/images/${selectedProduct.imagePath}`}
+                    src={`${BASE_URL}/uploads/images/${selectedProduct.imagePath}`}
                     alt={selectedProduct.name}
                     width="60px"
                   />

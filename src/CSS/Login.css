@@ -1,58 +1,256 @@
-body {
+/* =========================
+   GOOGLE FONT
+========================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* =========================
+   RESET
+========================= */
+
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* =========================
+   BODY
+========================= */
+
+body {
+  font-family: "Poppins", sans-serif;
+
+  background: linear-gradient(
+    135deg,
+    #ff6b6b,
+    #ff8e53,
+    #ffcc70,
+    #6a11cb,
+    #2575fc
+  );
+  
+  background-size: 400% 400%;
+
+  animation: gradientBG 12s ease infinite;
+
+  min-height: 100vh;
+}
+
+/* Background Animation */
+
+@keyframes gradientBG {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+/* =========================
+   LOGIN CONTAINER
+========================= */
+
 .login-container {
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
+
+/* =========================
+   LOGIN CARD
+========================= */
 
 .login-card {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  width: 320px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  text-align: center;
+  width: 100%;
+  max-width: 420px;
+
+  background: rgba(255,255,255,0.18);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  border-radius: 28px;
+
+  padding: 40px 32px;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+
+  color: white;
 }
 
+/* =========================
+   TITLE
+========================= */
+
 .login-card h2 {
-  margin-bottom: 20px;
+  text-align: center;
+
+  font-size: 36px;
+  font-weight: 700;
+
+  margin-bottom: 10px;
+
+  color: white;
 }
+
+.login-subtitle {
+  text-align: center;
+
+  color: #f1f5f9;
+
+  font-size: 15px;
+
+  margin-bottom: 30px;
+}
+
+/* =========================
+   INPUTS
+========================= */
 
 .login-card input {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+
+  padding: 15px;
+
+  margin-bottom: 18px;
+
+  border-radius: 14px;
+
+  border: none;
+
+  background: rgba(255,255,255,0.2);
+
+  color: white;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s ease;
 }
+
+.login-card input::placeholder {
+  color: #f8fafc;
+}
+
+.login-card input:focus {
+  background: rgba(255,255,255,0.28);
+
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.15);
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
 
 .login-card button {
   width: 100%;
-  padding: 10px;
-  background: #3b82f6;
-  color: white;
+
+  padding: 15px;
+
   border: none;
-  border-radius: 6px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #ff512f,
+    #dd2476
+  );
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
   cursor: pointer;
-  transition: 0.3s;
+
+  transition: 0.3s ease;
+
+  margin-top: 10px;
 }
 
 .login-card button:hover {
-  background: #2563eb;
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 25px rgba(221,36,118,0.4);
 }
+
+/* =========================
+   DISABLED BUTTON
+========================= */
 
 .login-card button:disabled {
   background: #94a3b8;
+  cursor: not-allowed;
 }
 
+/* =========================
+   ERROR MESSAGE
+========================= */
+
 .error {
-    padding-bottom: 10px;
-  color: red;
+  color: #ffe4e6;
+
   font-size: 14px;
+
+  margin-bottom: 12px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.login-footer {
+  text-align: center;
+
+  margin-top: 22px;
+
+  font-size: 14px;
+
+  color: #f8fafc;
+}
+
+.login-footer a {
+  color: #fff;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .login-card {
+    padding: 30px 22px;
+  }
+
+  .login-card h2 {
+    font-size: 30px;
+  }
+
 }
