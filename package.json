@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://anubhavkumaro.github.io/my-text-app",
+  "homepage": "https://anubhavkumaro.github.io/my-test-app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
