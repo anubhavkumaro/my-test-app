@@ -45,46 +45,58 @@ export default function Products({ cartCount, setCartCount }) {
   const addToCart = (product) => {
     // Get Existing Cart
     const token = localStorage.getItem("token");
-    if(token === null) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (token === null) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Find Existing Product
-    const existingProduct = cart.find((item) => item.id === product.id);
+      // Find Existing Product
+      const existingProduct = cart.find((item) => item.id === product.id);
 
-    // Product Exists
-    if (existingProduct) {
-      existingProduct.quantity = (existingProduct.quantity || 0) + 1;
+      // Product Exists
 
-      setShowMessage(true);
-      setMessage(`${existingProduct.quantity} Quantity Added ${product.name} 🛒`);
-      setTimeout(() => {
-        setShowMessage(false);
-        setMessage("");
-      }, 5000);
-    } else {
-      // Add New Product
-      cart.push({
-        ...product,
-        quantity: 1,
-      });
-      setCartCount(cart.length);
-      setShowMessage(true);
-      setMessage(`${product.name} Added To Cart 🛒`);
-      setTimeout(() => {
-        setShowMessage(false);
-        setMessage("");
-      }, 5000);
+      if (existingProduct) {
+        if (existingProduct.quantity != product.stock) {
+          existingProduct.quantity = (existingProduct.quantity || 0) + 1;
+
+          setShowMessage(true);
+          setMessage(
+            `${existingProduct.quantity} Quantity Added ${product.name} 🛒`,
+          );
+          setTimeout(() => {
+            setShowMessage(false);
+            setMessage("");
+          }, 5000);
+        } else {
+          setShowMessage(true);
+          setMessage(`Out Of Stock ${product.name} 🛒`);
+          setTimeout(() => {
+            setShowMessage(false);
+            setMessage("");
+          }, 5000);
+        }
+      } else {
+        // Add New Product
+        cart.push({
+          ...product,
+          quantity: 1,
+        });
+        setCartCount(cart.length);
+        setShowMessage(true);
+        setMessage(`${product.name} Added To Cart 🛒`);
+        setTimeout(() => {
+          setShowMessage(false);
+          setMessage("");
+        }, 5000);
+      }
+
+      // Save Updated Cart
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      // Calculate Total Quantity
+      const totalQuantity = cart.reduce(
+        (total, item) => total + (item.quantity || 0),
+        0,
+      );
     }
-
-    // Save Updated Cart
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Calculate Total Quantity
-    const totalQuantity = cart.reduce(
-      (total, item) => total + (item.quantity || 0),
-      0,
-    );
-  }
   };
 
   return (
@@ -146,7 +158,7 @@ export default function Products({ cartCount, setCartCount }) {
                   </div>
 
                   {/* Stock */}
-                  <p className="stock">
+                  <p className={product.stock > 0 ? "in-stock" : "out-stock"}>
                     {product.stock > 0
                       ? `In Stock (${product.stock})`
                       : "Out Of Stock"}
@@ -177,14 +189,15 @@ export default function Products({ cartCount, setCartCount }) {
           </div>
         )}
       </div>
-      {showMessage && <p className="cart-message"><span>{message}</span>
+      {showMessage && (
+        <p className="cart-message">
+          <span>{message}</span>
 
-    <button
-      className="close-btn"
-      onClick={() => setShowMessage(false)}
-    >
-      ×
-    </button></p>}
+          <button className="close-btn" onClick={() => setShowMessage(false)}>
+            ×
+          </button>
+        </p>
+      )}
     </>
   );
 }

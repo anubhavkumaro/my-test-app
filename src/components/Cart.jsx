@@ -1,111 +1,132 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../CSS/Cart.css";
 import PublicNavbar from "./PublicNavbar";
+import { BASE_URL } from "../api";
 
-export default function Cart({ cartCount }) {
+export default function Cart({ cartCount, setCartCount }) {
   // Dummy Cart Data
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Laptop",
-      price: 55000,
-      quantity: 1,
-      image:
-        "https://images.unsplash.com/photo-1517336714739-489689fd1ca8",
-    },
-    {
-      id: 2,
-      name: "Headphone",
-      price: 2500,
-      quantity: 2,
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-    },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token !== null) {
+      fetchProducts();
+    } else {
+      const items = localStorage.getItem("cart");
+
+      if (items) {
+        setCartItems(JSON.parse(items));
+      }
+    }
+  }, []);
+
+  const fetchProducts = () => {
+    api
+      .get("/viewAllProducts")
+      .then((res) => setCartItems(res.data))
+      .catch((err) => console.error("Error:", err));
+  };
 
   // Increase Quantity
   const increaseQty = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
+    const updatedCart = cartItems.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
     );
+
+    setCartItems(updatedCart);
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   // Decrease Quantity
   const decreaseQty = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
+    const updatedCart = cartItems.map((item) =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item,
     );
+
+    setCartItems(updatedCart);
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   // Remove Item
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
+ const removeItem = (id) => {
+
+  const updatedCart = cartItems.filter(
+    (item) => item.id !== id
+  );
+
+  setCartItems(updatedCart);
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(updatedCart)
+  );
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  setCartCount(cart.length)
+};
 
   // Total Price
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   return (
     <>
-    <PublicNavbar cartCount={cartCount}/>
-    <div className="cart-container">
-      <h2>Shopping Cart 🛒</h2>
+      <PublicNavbar cartCount={cartCount} />
+      <div className="cart-container">
+        <h2>Shopping Cart 🛒</h2>
 
-      {cartItems.length === 0 ? (
-        <h3>Your Cart is Empty</h3>
-      ) : (
-        <>
-          {cartItems.map((item) => (
-            <div className="cart-item" key={item.id}>
-              <img src={item.image} alt={item.name} />
+        {cartItems.length === 0 ? (
+          <h3>Your Cart is Empty</h3>
+        ) : (
+          <>
+            {cartItems.map((item) => (
+              <div className="cart-item" key={item.id}>
+                <img
+                  src={`${BASE_URL}/uploads/images/${item.imagePath}`}
+                  alt={item.name}
+                />
 
-              <div className="cart-details">
-                <h3>{item.name}</h3>
-                <p>₹ {item.price}</p>
+                <div className="cart-details">
+                  <h3>{item.name}</h3>
+                  <p>₹ {item.price}</p>
 
-                <div className="quantity-box">
-                  <button onClick={() => decreaseQty(item.id)}>
-                    -
-                  </button>
+                  <div className="quantity-box">
+                    <button onClick={() => decreaseQty(item.id)}>-</button>
 
-                  <span>{item.quantity}</span>
+                    <span>{item.quantity}</span>
 
-                  <button onClick={() => increaseQty(item.id)}>
-                    +
-                  </button>
+                    <button
+                      className="qty-btn"
+                      disabled={item.quantity >= item.stock}
+                      onClick={() => increaseQty(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
+
+                <button
+                  className="remove-btn"
+                  onClick={() => removeItem(item.id)}
+                >
+                  Remove
+                </button>
               </div>
+            ))}
 
-              <button
-                className="remove-btn"
-                onClick={() => removeItem(item.id)}
-              >
-                Remove
-              </button>
+            <div className="cart-total">
+              <h3>Total: ₹ {totalPrice}</h3>
+
+              <button className="checkout-btn">Proceed to Checkout</button>
             </div>
-          ))}
-
-          <div className="cart-total">
-            <h3>Total: ₹ {totalPrice}</h3>
-
-            <button className="checkout-btn">
-              Proceed to Checkout
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

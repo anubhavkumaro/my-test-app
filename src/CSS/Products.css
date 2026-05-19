@@ -367,3 +367,13 @@
     transform: translateX(120%);
   }
 }
+
+.in-stock{
+  color: green;
+  font-weight: bold;
+}
+
+.out-stock{
+  color: red;
+  font-weight: bold;
+}

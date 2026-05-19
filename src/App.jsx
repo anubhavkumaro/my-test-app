@@ -24,7 +24,7 @@ useEffect(() => {
       <Route path="/" element={<Home cartCount={cartCount}/>} />
       <Route path="/Products" element={<Products cartCount={cartCount} setCartCount={setCartCount}/>}/>
       <Route path="/Home" element={<Home />} />
-      <Route path="/Cart" element={<Cart cartCount={cartCount}/>}/>
+      <Route path="/Cart" element={<Cart cartCount={cartCount} setCartCount={setCartCount}/>}/>
       <Route path="/login" element={<Login />} />
        <Route path="/register" element={<Register />} /> 
        <Route path="/unauthorized" element={<Unauthorized />} />
