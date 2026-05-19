@@ -1,8 +1,8 @@
 // api.js
 import axios from "axios";
-export const BASE_URL = "jwtprojectwithvscode-production.up.railway.app";
+export const BASE_URL = "https://jwtprojectwithvscode-production.up.railway.app";
 const api = axios.create({
-  baseURL: "jwtprojectwithvscode-production.up.railway.app"
+  baseURL: "https://jwtprojectwithvscode-production.up.railway.app"
 });
 
 api.interceptors.request.use(config => {
