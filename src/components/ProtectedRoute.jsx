@@ -43,7 +43,7 @@ export default function ProtectedRoute({ children, allowedRoles }) {
             Authorization: "Bearer " + token,
           },
         });
-
+          console.log(token);
         if (res.status === 200) {
           setIsValid(true);
         } else {

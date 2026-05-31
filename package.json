@@ -1,9 +1,8 @@
 {
-  "name": "my-text-app",
+  "name": "my-test-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://anubhavkumaro.github.io/my-test-app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
